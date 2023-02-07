@@ -29,11 +29,11 @@ class Auth:
         if path is None or excluded_paths is None or len(excluded_paths) == 0:
             return True
 
-        if path[-1] != '/':
+        if path[-1] != '/' and path[-1] != '*':
             path += '/'
 
         for excluded_path in excluded_paths:
-            if excluded_path[-1] != '/':
+            if excluded_path[-1] != '/' and excluded_path[-1] != '*':
                 excluded_path += '/'
 
             if excluded_path == path:
