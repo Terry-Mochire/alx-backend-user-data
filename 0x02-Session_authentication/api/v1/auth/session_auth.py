@@ -4,7 +4,7 @@ Session Authentication
 """
 
 from api.v1.auth.auth import Auth
-
+from models.user import User
 
 class SessionAuth(Auth):
     """
@@ -52,4 +52,5 @@ class SessionAuth(Auth):
         """
 
         user_id = self.user_id_for_session_id(self.session_cookie(request))
-        return user_id
+        user = User.get(user_id)
+        return user
