@@ -52,5 +52,4 @@ class SessionAuth(Auth):
         """
 
         user_id = self.user_id_for_session_id(self.session_cookie(request))
-        return self.user_id_for_session_id(user_id)
-
+        return user_id
