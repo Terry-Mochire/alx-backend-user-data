@@ -2,14 +2,8 @@
 """
 SQLAlchemy model for a user.
 """
-import sqlalchemy
-from sqlalchemy import create_engine
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker
-
-# Connect to the database
-engine = create_engine("sqlite+pysqlite:///:memory:", echo=True)
 
 # Create base class
 Base = declarative_base()
