@@ -20,7 +20,7 @@ def register():
     email = request.form.get('email')
     password = request.form.get('password')
     try:
-        user = Auth.register_user(email, password)
+        user = AUTH.register_user(email, password)
         return jsonify({"email": user.email, "message": "user created"}), 200
     except ValueError:
         return jsonify({"message": "email already registered"}), 400
@@ -47,6 +47,16 @@ def logout() -> str:
     if user:
         AUTH.destroy_session(user.id)
         return redirect('/')
+    else:
+        abort(403)
+
+
+@app.route('/profile', methods=['GET'], strict_slashes=False)
+def profile() -> str:
+    session_id = request.cookies.get('session_id')
+    user = AUTH.get_user_from_session_id(session_id)
+    if user:
+        return jsonify({"email": user.email}), 200
     else:
         abort(403)
 
