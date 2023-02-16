@@ -27,7 +27,7 @@ def register():
 
 
 @app.route('/sessions', methods=['POST'])
-def login():
+def login() -> str:
     email = request.form.get('email')
     password = request.form.get('password')
     valid_login = Auth.valid_login(email, password)
