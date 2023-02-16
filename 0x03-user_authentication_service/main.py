@@ -107,7 +107,8 @@ def reset_password_token(email: str) -> str:
     r = requests.post('http://127.0.0.1:5000/reset_password',
                       data={'email': email})
     if r.status_code == 200:
-        assert (r.json() == {"email": email, "reset_token": r.json().get('reset_token')})
+        token = r.json().get('reset_token')
+        assert (r.json() == {"email": email, "reset_token": token})
     else:
         assert (r.status_code == 403)
 
